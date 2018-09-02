@@ -1,1 +1,1 @@
-# taolag.npm.taolag-slugify
+# taolag-slugify
