@@ -32,3 +32,7 @@ Remove last '/' and anything after.
 Replace '/' with ':'.
 
 'Leroy/Jackson' => 'leroy:jackson'
+
+## Publishing to npmjs.com
+
+`npm publish --access public`
