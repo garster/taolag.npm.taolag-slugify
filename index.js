@@ -21,26 +21,28 @@ const decodeS3Key = key => decodeURIComponent(key.replace(/\+/g, ' '));
 /**
  * Given S3 event obj key, return obj for db
  */
-const makeAlbumRecord = key => {
+const makeAlbumItemRecord = key => {
   const decodedKey = decodeS3Key(key);
 
   // remove file name to get AlbumId
-  const albumId = taolagSlug(decodedKey.substring(0, decodedKey.lastIndexOf('/')));
+  const albumId = taolagSlug(
+    decodedKey.substring(0, decodedKey.lastIndexOf('/'))
+  );
 
   // remove Album name to get ParentAlbumId
   const parentAlbumId = albumId.substring(0, albumId.lastIndexOf('/'));
 
   // return DynamoDB object
   return {
-    AlbumId: albumId,
-    ParentAlbumId: parentAlbumId ? parentAlbumId : '_'
+    AlbumId: { S: albumId },
+    ParentAlbumId: { S: parentAlbumId ? parentAlbumId : '_' }
   };
 };
 
 /**
  * Given S3 event obj key, return obj for db
  */
-const makePhotoRecord = key => {
+const makePhotoItemRecord = key => {
   const decodedKey = decodeS3Key(key);
 
   // slugify full path
@@ -51,15 +53,15 @@ const makePhotoRecord = key => {
 
   // return DynamoDB object
   return {
-    AlbumId: albumId,
-    PhotoId: photoId,
-    S3Key: decodedKey
+    AlbumId: { S: albumId },
+    PhotoId: { S: photoId },
+    S3Key: { S: decodedKey }
   };
 };
 
 module.exports = {
-  makeAlbumRecord,
-  makePhotoRecord,
+  makeAlbumItemRecord,
+  makePhotoItemRecord,
   taolagSlug,
   decodeS3Key
 };

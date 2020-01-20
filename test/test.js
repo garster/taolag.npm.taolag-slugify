@@ -17,14 +17,14 @@ function taolagSlug_IsValid() {
 function makeAlbumRecord_IsValid1() {
   const input = 'The Super Rad/With+-+Dash+-+AND.DOT';
   const expected = {
-    AlbumId: 'the-super-rad',
-    ParentAlbumId: '_'
+    AlbumId: { S: 'the-super-rad' },
+    ParentAlbumId: { S: '_' }
   };
 
-  const actual = sut.makeAlbumRecord(input);
+  const actual = sut.makeAlbumItemRecord(input);
   const result = JSON.stringify(actual) === JSON.stringify(expected);
   console.log(
-    `makeAlbumRecord_IsValid1: ${result} : ${JSON.stringify(actual)}`
+    `makeAlbumItemRecord_IsValid1: ${result} : ${JSON.stringify(actual)}`
   );
   return result;
 }
@@ -32,14 +32,14 @@ function makeAlbumRecord_IsValid1() {
 function makeAlbumRecord_IsValid2() {
   const input = 'The Super Rad/Thing+-+1/With+-+Dash+-+AND.DOT';
   const expected = {
-    AlbumId: 'the-super-rad/thing-1',
-    ParentAlbumId: 'the-super-rad'
+    AlbumId: { S: 'the-super-rad/thing-1' },
+    ParentAlbumId: { S: 'the-super-rad' }
   };
 
-  const actual = sut.makeAlbumRecord(input);
+  const actual = sut.makeAlbumItemRecord(input);
   const result = JSON.stringify(actual) === JSON.stringify(expected);
   console.log(
-    `makeAlbumRecord_IsValid2: ${result} : ${JSON.stringify(actual)}`
+    `makeAlbumItemRecord_IsValid2: ${result} : ${JSON.stringify(actual)}`
   );
   return result;
 }
@@ -49,15 +49,15 @@ function makeAlbumRecord_IsValid2() {
 function makePhotoRecord_IsValid1() {
   const input = 'The Super Rad/With+-+Dash+-+AND.DOT';
   const expected = {
-    AlbumId: 'the-super-rad',
-    PhotoId: 'the-super-rad/with-dash-and.dot',
-    S3Key: 'The Super Rad/With - Dash - AND.DOT'
+    AlbumId: { S: 'the-super-rad' },
+    PhotoId: { S: 'the-super-rad/with-dash-and.dot' },
+    S3Key: { S: 'The Super Rad/With - Dash - AND.DOT' }
   };
 
-  const actual = sut.makePhotoRecord(input);
+  const actual = sut.makePhotoItemRecord(input);
   const result = JSON.stringify(actual) === JSON.stringify(expected);
   console.log(
-    `makePhotoRecord_IsValid1: ${result} : ${JSON.stringify(actual)}`
+    `makePhotoItemRecord_IsValid1: ${result} : ${JSON.stringify(actual)}`
   );
   return result;
 }
