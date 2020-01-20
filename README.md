@@ -7,7 +7,7 @@ You should not use it. You're gonna have a bad time.
 # Usage
 
 ```js
-const leroy = require('taolag-slugify');
+const leroy = require('@tikicat/taolag-slugify');
 
 const jackson = leroy.makeTokenUrl('Leroy/Jackson');
 
