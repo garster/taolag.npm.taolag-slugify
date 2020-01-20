@@ -32,6 +32,8 @@ Reads in the Lambda S3 event key propery and makes a DynomoDB Item object.
 
 Reads in the Lambda S3 event key propery and makes a DynomoDB Item object.
 
-## Publishing to npmjs.com
+# Publishing to npmjs.com
+
+`npm login`
 
 `npm publish --access public`
