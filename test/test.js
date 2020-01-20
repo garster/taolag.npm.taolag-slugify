@@ -21,10 +21,10 @@ function makeAlbumRecord_IsValid1() {
     ParentAlbumId: { S: '_' }
   };
 
-  const actual = sut.makeAlbumItemRecord(input);
+  const actual = sut.makeTaolagAlbumItemRecord(input);
   const result = JSON.stringify(actual) === JSON.stringify(expected);
   console.log(
-    `makeAlbumItemRecord_IsValid1: ${result} : ${JSON.stringify(actual)}`
+    `makeTaolagAlbumItemRecord_IsValid1: ${result} : ${JSON.stringify(actual)}`
   );
   return result;
 }
@@ -36,10 +36,10 @@ function makeAlbumRecord_IsValid2() {
     ParentAlbumId: { S: 'the-super-rad' }
   };
 
-  const actual = sut.makeAlbumItemRecord(input);
+  const actual = sut.makeTaolagAlbumItemRecord(input);
   const result = JSON.stringify(actual) === JSON.stringify(expected);
   console.log(
-    `makeAlbumItemRecord_IsValid2: ${result} : ${JSON.stringify(actual)}`
+    `makeTaolagAlbumItemRecord_IsValid2: ${result} : ${JSON.stringify(actual)}`
   );
   return result;
 }
@@ -54,10 +54,10 @@ function makePhotoRecord_IsValid1() {
     S3Key: { S: 'The Super Rad/With - Dash - AND.DOT' }
   };
 
-  const actual = sut.makePhotoItemRecord(input);
+  const actual = sut.makeTaolagPhotoItemRecord(input);
   const result = JSON.stringify(actual) === JSON.stringify(expected);
   console.log(
-    `makePhotoItemRecord_IsValid1: ${result} : ${JSON.stringify(actual)}`
+    `makeTaolagPhotoItemRecord_IsValid1: ${result} : ${JSON.stringify(actual)}`
   );
   return result;
 }

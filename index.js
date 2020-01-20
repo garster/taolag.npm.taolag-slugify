@@ -21,7 +21,7 @@ const decodeS3Key = key => decodeURIComponent(key.replace(/\+/g, ' '));
 /**
  * Given S3 event obj key, return obj for db
  */
-const makeAlbumItemRecord = key => {
+const makeTaolagAlbumItemRecord = key => {
   const decodedKey = decodeS3Key(key);
 
   // remove file name to get AlbumId
@@ -42,7 +42,7 @@ const makeAlbumItemRecord = key => {
 /**
  * Given S3 event obj key, return obj for db
  */
-const makePhotoItemRecord = key => {
+const makeTaolagPhotoItemRecord = key => {
   const decodedKey = decodeS3Key(key);
 
   // slugify full path
@@ -60,8 +60,8 @@ const makePhotoItemRecord = key => {
 };
 
 module.exports = {
-  makeAlbumItemRecord,
-  makePhotoItemRecord,
+  makeTaolagAlbumItemRecord,
+  makeTaolagPhotoItemRecord,
   taolagSlug,
   decodeS3Key
 };
