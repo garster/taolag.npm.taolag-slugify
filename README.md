@@ -2,36 +2,35 @@
 
 Reusable slugify presets for use with my personal project.
 
-You should not use it. You're gonna have a bad time.
+You should not use it. You're have a bad time.
 
 # Usage
 
 ```js
 const leroy = require('@tikicat/taolag-slugify');
 
-const jackson = leroy.makeTokenUrl('Leroy/Jackson');
+const jackson = leroy.taolagSlug('Leroy/Jackson');
 
-// jackson == leroy:jackson
-
+// jackson == leroy/jackson
 ```
 
-## makePrettyUrl(str)
+## taolagSlug(str)
 
 Default slugify but allow '/'.
 
-'Leroy/Jackson' => 'leroy/jackson'
+'Leroy Jackson/was/here' => 'leroy-jackson/was/here'
 
-## makePrettyUrlWithoutLastSegment(str)
+## decodeS3Key(str)
 
-Remove last '/' and anything after.
+URI Decode plus turn + in space.
 
-'Leroy/Jackson' => 'leroy'
+## makeTaolagAlbumItemRecord(str)
 
-## makeTokenUrl(str)
+Reads in the Lambda S3 event key propery and makes a DynomoDB Item object.
 
-Replace '/' with ':'.
+## makeTaolagPhotoItemRecord(str)
 
-'Leroy/Jackson' => 'leroy:jackson'
+Reads in the Lambda S3 event key propery and makes a DynomoDB Item object.
 
 ## Publishing to npmjs.com
 
