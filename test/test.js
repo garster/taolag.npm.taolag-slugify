@@ -13,38 +13,57 @@ function taolagSlug_IsValid() {
 
 // Album ID
 
-function makeAlbumIds_IsValid1() {
-  const input = 'The Super Rad/With - Dash - AND.DOT';
-  const expected = { albumId: 'the-super-rad', parentAlbumId: '_' };
+function makeAlbumRecord_IsValid1() {
+  const input = 'The Super Rad/With+-+Dash+-+AND.DOT';
+  const expected = {
+    AlbumId: 'the-super-rad',
+    ParentAlbumId: '_'
+  };
 
-  const actual = sut.makeAlbumIds(input);
+  const actual = sut.makeAlbumRecord(input);
 
   console.log(
-    `alObj: ${JSON.stringify(actual) ===
+    `makeAlbumRecord_IsValid1: ${JSON.stringify(actual) ===
       JSON.stringify(expected)} : ${JSON.stringify(actual)}`
   );
 }
 
-function makeAlbumIds_IsValid2() {
-  const input = 'The Super Rad/Thing - 1/With - Dash - AND.DOT';
+function makeAlbumRecord_IsValid2() {
+  const input = 'The Super Rad/Thing+-+1/With+-+Dash+-+AND.DOT';
   const expected = {
-    albumId: 'the-super-rad/thing-1',
-    parentAlbumId: 'the-super-rad'
+    AlbumId: 'the-super-rad/thing-1',
+    ParentAlbumId: 'the-super-rad'
   };
 
-  const actual = sut.makeAlbumIds(input);
+  const actual = sut.makeAlbumRecord(input);
 
   console.log(
-    `alObj: ${JSON.stringify(actual) ===
+    `makeAlbumRecord_IsValid2: ${JSON.stringify(actual) ===
       JSON.stringify(expected)} : ${JSON.stringify(actual)}`
   );
 }
 
 // Photo ID
-
+//S3Key: 'The Super Rad/With - Dash - AND.DOT'
 // Convert URL
+function decodeS3Key_IsValid1() {
+  const input =
+    'Evil%20is%20evil,+greater,+lesser,+middling,%20it%20makes%20no%20difference.';
+  const expected =
+    'Evil is evil, greater, lesser, middling, it makes no difference.';
+
+  const actual = sut.decodeS3Key(input);
+
+  console.log(
+    `decodeS3Key_IsValid1: ${JSON.stringify(actual) ===
+      JSON.stringify(expected)} : ${JSON.stringify(actual)}`
+  );
+}
 
 // Runners
 taolagSlug_IsValid();
-makeAlbumIds_IsValid1();
-makeAlbumIds_IsValid2();
+
+makeAlbumRecord_IsValid1();
+makeAlbumRecord_IsValid2();
+
+decodeS3Key_IsValid1();
