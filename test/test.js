@@ -18,7 +18,8 @@ function makeAlbumRecord_IsValid1() {
   const input = 'The Super Rad/With+-+Dash+-+AND.DOT';
   const expected = {
     AlbumId: { S: 'the-super-rad' },
-    ParentAlbumId: { S: '_' }
+    ParentAlbumId: { S: '_' },
+    Title: { S: 'The Super Rad' }
   };
 
   const actual = sut.makeTaolagAlbumItemRecord(input);
@@ -33,7 +34,8 @@ function makeAlbumRecord_IsValid2() {
   const input = 'The Super Rad/Thing+-+1/With+-+Dash+-+AND.DOT';
   const expected = {
     AlbumId: { S: 'the-super-rad/thing-1' },
-    ParentAlbumId: { S: 'the-super-rad' }
+    ParentAlbumId: { S: 'the-super-rad' },
+    Title: { S: 'Thing - 1' }
   };
 
   const actual = sut.makeTaolagAlbumItemRecord(input);

@@ -1,7 +1,7 @@
 {
   "name": "@tikicat/taolag-slugify",
-  "version": "0.0.2",
-  "description": "Reusable slugify presets and other helpers for use with TAOLAG.",
+  "version": "0.0.3",
+  "description": "Don't use this. Reusable slugify presets and other helpers for use with TAOLAG.",
   "main": "index.js",
   "scripts": {
     "test": "node ./test/test.js"

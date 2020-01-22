@@ -24,6 +24,10 @@ Default slugify but allow '/'.
 
 URI Decode plus turn + in space.
 
+## getAlbumTitle(str)
+
+Extracts the "Album Title" from the path. Must be decoded first.
+
 ## makeTaolagAlbumItemRecord(str)
 
 Reads in the Lambda S3 event key propery and makes a DynomoDB Item object.

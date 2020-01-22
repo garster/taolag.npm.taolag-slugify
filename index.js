@@ -19,6 +19,16 @@ const taolagSlug = input =>
 const decodeS3Key = key => decodeURIComponent(key.replace(/\+/g, ' '));
 
 /**
+ * Extract the AlbumTitle from the path of Album yaml file.
+ * 'Top Level/Sub Level/_settings.yaml' => 'Sub Level'
+ */
+const getAlbumTitle = path => {
+  const segments = path.split('/');
+
+  return segments[segments.length - 2];
+};
+
+/**
  * Given S3 event obj key, return obj for db
  */
 const makeTaolagAlbumItemRecord = key => {
@@ -32,10 +42,13 @@ const makeTaolagAlbumItemRecord = key => {
   // remove Album name to get ParentAlbumId
   const parentAlbumId = albumId.substring(0, albumId.lastIndexOf('/'));
 
+  const albumTitle = getAlbumTitle(decodedKey);
+
   // return DynamoDB object
   return {
     AlbumId: { S: albumId },
-    ParentAlbumId: { S: parentAlbumId ? parentAlbumId : '_' }
+    ParentAlbumId: { S: parentAlbumId ? parentAlbumId : '_' },
+    Title: { S: albumTitle ? albumTitle : '_' }
   };
 };
 
@@ -63,5 +76,6 @@ module.exports = {
   makeTaolagAlbumItemRecord,
   makeTaolagPhotoItemRecord,
   taolagSlug,
-  decodeS3Key
+  decodeS3Key,
+  getAlbumTitle
 };
