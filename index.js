@@ -52,7 +52,12 @@ const makeTaolagAlbumItemRecord = (key, cover) => {
   };
 
   if (cover) {
-    obj.Cover = { S: cover };
+    const coverKey = `${decodedKey.substring(
+      0,
+      decodedKey.lastIndexOf('/')
+    )}/${cover}`;
+
+    obj.Cover = { S: coverKey };
   }
 
   return obj;
