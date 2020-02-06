@@ -31,7 +31,7 @@ const getAlbumTitle = path => {
 /**
  * Given S3 event obj key, return obj for db
  */
-const makeTaolagAlbumItemRecord = key => {
+const makeTaolagAlbumItemRecord = (key, cover) => {
   const decodedKey = decodeS3Key(key);
 
   // remove file name to get AlbumId
@@ -45,11 +45,17 @@ const makeTaolagAlbumItemRecord = key => {
   const albumTitle = getAlbumTitle(decodedKey);
 
   // return DynamoDB object
-  return {
+  let obj = {
     AlbumId: { S: albumId },
     ParentAlbumId: { S: parentAlbumId ? parentAlbumId : '_' },
     Title: { S: albumTitle ? albumTitle : '_' }
   };
+
+  if (cover) {
+    obj.Cover = { S: cover };
+  }
+
+  return obj;
 };
 
 /**
