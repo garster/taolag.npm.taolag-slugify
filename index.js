@@ -66,7 +66,7 @@ const makeTaolagAlbumItemRecord = (key, cover) => {
 /**
  * Given S3 event obj key, return obj for db
  */
-const makeTaolagPhotoItemRecord = key => {
+const makeTaolagPhotoItemRecord = (key, width, height) => {
   const decodedKey = decodeS3Key(key);
 
   // slugify full path
@@ -79,7 +79,9 @@ const makeTaolagPhotoItemRecord = key => {
   return {
     AlbumId: { S: albumId },
     PhotoId: { S: photoId },
-    S3Key: { S: decodedKey }
+    S3Key: { S: decodedKey },
+    Width: { N: width },
+    Height: { N: height }
   };
 };
 
